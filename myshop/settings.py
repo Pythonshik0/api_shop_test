@@ -13,12 +13,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "admin_interface",
+    "colorfield",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'admin_reorder',
     'rest_framework',
     'inventory',
 ]
@@ -31,6 +34,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'myshop.urls'
@@ -78,6 +82,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ADMIN_REORDER = (
+    {
+        'app': 'inventory',
+        'label': 'ADMIN',
+        'models': (
+            'inventory.Type',
+            'inventory.Price',
+            'inventory.Product',
+        )
+    },
+)
 
 # Internationalization
 
